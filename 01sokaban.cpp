@@ -88,6 +88,22 @@ vector<vector<string>> niveles = {
         "|      |                  .|",
         "|      | O                .|",
         "----------------------------"
+    },
+    {
+
+        "--------------------------------",
+        "|   |                           |",
+        "|@ .| O                       O |",
+        "|                           ----|",
+        "|                              .|",
+        "| O                          . .|",
+        "|     .                    |O |.|",
+        "|---                      O     |",
+        "| .                             |",
+        "|----       O             ------|",
+        "|  O                      |",
+        "|                         |",
+        "|-------------------------|", 
     }
 };
 
@@ -102,12 +118,13 @@ int main() {
         cout << "1. Jugar nivel 1" << endl;
         cout << "2. Jugar nivel 2" << endl;
         cout << "3. Jugar nivel 3" << endl;
-        cout << "2. Jugar nivel 4" << endl;
-        cout << "5. Salir" << endl;
+        cout << "4. Jugar nivel 4" << endl;
+        cout << "5. Jugar nivel extremo" << endl;
+        cout << "6. Salir" << endl;
         cout << "Seleccione una opcion: ";
         cin >> opcion;
 
-        if (opcion == 1 || opcion == 2|| opcion == 3|| opcion == 4) {
+        if (opcion == 1 || opcion == 2|| opcion == 3|| opcion == 4|| opcion == 5) {
             cargarNivel(niveles[opcion - 1], tablero, jugadorX, jugadorY);
 
             mostrarTablero();
