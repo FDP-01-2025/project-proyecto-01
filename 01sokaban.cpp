@@ -47,6 +47,7 @@ bool finJuego(const vector<string>& tablero);
 // Niveles definidos
 vector<vector<string>> niveles = {
     {
+        //nivel 1 
         "--------------",
         "|. O       . |",
         "|            |",
@@ -56,6 +57,7 @@ vector<vector<string>> niveles = {
         "--------------"
     },
      {
+        //nivel 2
         "------------------",
         "|. O       .     |",
         "|                |",
@@ -67,17 +69,19 @@ vector<vector<string>> niveles = {
         "-----------------"
     },
     {
+        //nivel 3 
         "----------------------------",
-        "|.   O                   . |",
-        "|                  .       |",
+        "|.   O      |            . |",
+        "|           |      .       |",
         "|  @   O                   |",
         "|                          |",
         "|                 O        |",
-        "|  O                       |",
-        "|                         .|",
+        "|  O      |                |",
+        "|         |               .|",
         "----------------------------"
     },
     {
+        //nivel 4
         "----------------------------",
         "|.   O                   . |",
         "|                  .       |",
@@ -90,7 +94,7 @@ vector<vector<string>> niveles = {
         "----------------------------"
     },
     {
-
+     //nivel 5 extremo 
         "--------------------------------",
         "|   |                           |",
         "|@ .| O                       O |",
@@ -161,7 +165,7 @@ int main() {
                 }
             }
         }
-    } while (opcion != 3);
+    } while (opcion != 6);
 
     cout << "Gracias por jugar!" << endl;
     return 0;
