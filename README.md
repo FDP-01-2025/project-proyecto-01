@@ -3,14 +3,12 @@
 
 ## Descripción del Proyecto
 
-Breve descripción del juego, su propósito, cómo se juega y cualquier otro detalle importante que describa la idea general del proyecto.
+Este proyecto consiste en el juego que jugabamos en los telefonos de teclas llamado Sokaban, en el cual mezclamos estrategia y puzles, se juega utilizando las teclas "W" para arriba,"S" para abajo, "A" para la izquierda y "D" para la derecha. El juego utiliza estructuras de control como `if`, `switch`, y bucles `while` y `for` para generar interacciones dinámicas.
 
-**Por ejemplo:**
-Este proyecto consiste en un juego de aventuras donde el jugador debe explorar un mundo virtual, recoger objetos, resolver acertijos y enfrentar enemigos. El juego utiliza estructuras de control como `if`, `switch`, y bucles `while` y `for` para generar interacciones dinámicas.
 
 ## Equipo
 
-- **Nombre del equipo:** [Nombre del equipo]
+- **Nombre del equipo:** [Proyecto 01]
 
 ### Integrantes del equipo
 
