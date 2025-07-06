@@ -14,14 +14,9 @@ Este proyecto consiste en un juego de aventuras donde el jugador debe explorar u
 
 ### Integrantes del equipo
 
-1. **Nombre completo:** [Nombre del estudiante 1]  
-   **Carnet:** [Carnet del estudiante 1]
+1. **Nombre completo:** [Cristal Abigail Claros Osorio]  
+   **Carnet:** [00002525]
 
-2. **Nombre completo:** [Nombre del estudiante 2]  
-   **Carnet:** [Carnet del estudiante 2]
-
-3. **Nombre completo:** [Nombre del estudiante 3]  
-   **Carnet:** [Carnet del estudiante 3]
 
 (Agregar más integrantes si es necesario)
 
