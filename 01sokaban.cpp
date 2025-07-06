@@ -4,50 +4,49 @@
 
 using namespace std;
 
-// Símbolos del juego
-const char PAREDl = '|';
-const char PAREDa = '-';
-const char VACIO = ' ';
-const char CAJA = 'O';
-const char DESTINO = '.';
+// Game symbols
+const char WALL_VERTICAL = '|';
+const char WALL_HORIZONTAL = '-';
+const char EMPTY = ' ';
+const char BOX = 'O';
+const char TARGET = '.';
 const char PLAYER = '@';
-const char CAJA_EN_DESTINO = '*'; 
-const char PLAYER_EN_DESTINO = '+'; 
+const char BOX_ON_TARGET = '*'; 
+const char PLAYER_ON_TARGET = '+'; 
 
-//ESTO
-void cargarNivel(const vector<string>& nivel, vector<string>& tablero, int& jugadorX, int& jugadorY) {
-    tablero = nivel;
-    // Buscar posición del jugador
-    for (int y = 0; y < tablero.size(); ++y) {
-        for (int x = 0; x < tablero[y].size(); ++x) {
-            if (tablero[y][x] == PLAYER || tablero[y][x] == PLAYER_EN_DESTINO) {
-                jugadorX = x;
-                jugadorY = y;
+// Load level function
+void loadLevel(const vector<string>& level, vector<string>& board, int& playerX, int& playerY) {
+    board = level;
+    // Find player's position
+    for (int y = 0; y < board.size(); ++y) {
+        for (int x = 0; x < board[y].size(); ++x) {
+            if (board[y][x] == PLAYER || board[y][x] == PLAYER_ON_TARGET) {
+                playerX = x;
+                playerY = y;
                 return;
             }
         }
     }
 }
-//AQUI^
 
-vector<string> tablero;
-int jugadorX, jugadorY;
+vector<string> board;
+int playerX, playerY;
 
-void mostrarTablero() {
-    system("cls"); // Limpiar pantalla 
-    for (const auto& fila : tablero) {
-        cout << fila << endl;
+void displayBoard() {
+    system("cls"); // Clear screen
+    for (const auto& row : board) {
+        cout << row << endl;
     }
 }
 
-// Función para mover el jugador
-void mover(int dx, int dy, vector<string>& tablero, int& jugadorX, int& jugadorY);
-bool finJuego(const vector<string>& tablero);
+// Function to move the player
+void move(int dx, int dy, vector<string>& board, int& playerX, int& playerY);
+bool gameFinished(const vector<string>& board);
 
-// Niveles definidos
-vector<vector<string>> niveles = {
+// Predefined levels
+vector<vector<string>> levels = {
     {
-        //nivel 1 
+        // Level 1
         "--------------",
         "|. O       . |",
         "|            |",
@@ -56,8 +55,8 @@ vector<vector<string>> niveles = {
         "|            |",
         "--------------"
     },
-     {
-        //nivel 2
+    {
+        // Level 2
         "------------------",
         "|. O       .     |",
         "|                |",
@@ -69,7 +68,7 @@ vector<vector<string>> niveles = {
         "-----------------"
     },
     {
-        //nivel 3 
+        // Level 3
         "----------------------------",
         "|.   O      |            . |",
         "|           |      .       |",
@@ -81,7 +80,7 @@ vector<vector<string>> niveles = {
         "----------------------------"
     },
     {
-        //nivel 4
+        // Level 4
         "----------------------------",
         "|.   O                   . |",
         "|                  .       |",
@@ -94,7 +93,7 @@ vector<vector<string>> niveles = {
         "----------------------------"
     },
     {
-     //nivel 5 extremo 
+        // Extreme Level 5
         "--------------------------------",
         "|   |                           |",
         "|@ .| O                       O |",
@@ -111,122 +110,119 @@ vector<vector<string>> niveles = {
     }
 };
 
-
-
-
 int main() {
-    int opcion;
+    int option;
     do {
         system("cls");
-        cout << "=== Menu Principal ===" << endl;
-        cout << "1. Jugar nivel 1" << endl;
-        cout << "2. Jugar nivel 2" << endl;
-        cout << "3. Jugar nivel 3" << endl;
-        cout << "4. Jugar nivel 4" << endl;
-        cout << "5. Jugar nivel extremo" << endl;
-        cout << "6. Salir" << endl;
-        cout << "Seleccione una opcion: ";
-        cin >> opcion;
+        cout << "=== Main Menu ===" << endl;
+        cout << "1. Play Level 1" << endl;
+        cout << "2. Play Level 2" << endl;
+        cout << "3. Play Level 3" << endl;
+        cout << "4. Play Level 4" << endl;
+        cout << "5. Play Extreme Level" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Select an option: ";
+        cin >> option;
 
-        if (opcion == 1 || opcion == 2|| opcion == 3|| opcion == 4|| opcion == 5) {
-            cargarNivel(niveles[opcion - 1], tablero, jugadorX, jugadorY);
+        if (option >= 1 && option <= 5) {
+            loadLevel(levels[option - 1], board, playerX, playerY);
 
-            mostrarTablero();
+            displayBoard();
 
-            // Bucle de juego
+            // Game loop
             while (true) {
-                char tecla = _getch();
-                if (tecla == 27) // para salir
+                char key = _getch();
+                if (key == 27) // Escape key to exit
                     break;
-                switch (tecla) {
+                switch (key) {
                     case 'w':
                     case 'W':
-                        mover(0, -1, tablero, jugadorX, jugadorY);
+                        move(0, -1, board, playerX, playerY);
                         break;
                     case 's':
                     case 'S':
-                        mover(0, 1, tablero, jugadorX, jugadorY);
+                        move(0, 1, board, playerX, playerY);
                         break;
                     case 'a':
                     case 'A':
-                        mover(-1, 0, tablero, jugadorX, jugadorY);
+                        move(-1, 0, board, playerX, playerY);
                         break;
                     case 'd':
                     case 'D':
-                        mover(1, 0, tablero, jugadorX, jugadorY);
+                        move(1, 0, board, playerX, playerY);
                         break;
                 }
-                mostrarTablero();
+                displayBoard();
 
-                if (finJuego(tablero)) {
-                    cout << "¡Felicidades! Has completado el nivel." << endl;
-                    _getch(); // Pausa antes de volver al menú
+                if (gameFinished(board)) {
+                    cout << "Congratulations! You completed the level." << endl;
+                    _getch(); // Pause before returning to menu
                     break;
                 }
             }
         }
-    } while (opcion != 6);
+    } while (option != 6);
 
-    cout << "Gracias por jugar!" << endl;
+    cout << "Thanks for playing!" << endl;
     return 0;
 }
 
-// Implementación de mover y finJuego
-void mover(int dx, int dy, vector<string>& tablero, int& jugadorX, int& jugadorY) {
-    int x = jugadorX;
-    int y = jugadorY;
+// Implementation of move and gameFinished functions
+void move(int dx, int dy, vector<string>& board, int& playerX, int& playerY) {
+    int x = playerX;
+    int y = playerY;
     int nx = x + dx;
     int ny = y + dy;
 
-    char objetivo = tablero[ny][nx];
+    char target = board[ny][nx];
 
-    if (objetivo == VACIO || objetivo == DESTINO) {
-        // Mover jugador
-        if (tablero[y][x] == PLAYER_EN_DESTINO)
-            tablero[y][x] = DESTINO;
+    if (target == EMPTY || target == TARGET) {
+        // Move player
+        if (board[y][x] == PLAYER_ON_TARGET)
+            board[y][x] = TARGET;
         else
-            tablero[y][x] = VACIO;
+            board[y][x] = EMPTY;
 
-        if (objetivo == DESTINO)
-            tablero[ny][nx] = PLAYER_EN_DESTINO;
+        if (target == TARGET)
+            board[ny][nx] = PLAYER_ON_TARGET;
         else
-            tablero[ny][nx] = PLAYER;
+            board[ny][nx] = PLAYER;
 
-        jugadorX = nx;
-        jugadorY = ny;
-    } else if (objetivo == CAJA || objetivo == CAJA_EN_DESTINO) {
+        playerX = nx;
+        playerY = ny;
+    } else if (target == BOX || target == BOX_ON_TARGET) {
         int bx = nx + dx;
         int by = ny + dy;
-        char objetivoCaja = tablero[by][bx];
+        char targetBox = board[by][bx];
 
-        if (objetivoCaja == VACIO || objetivoCaja == DESTINO) {
-            // Mover caja
-            if (objetivoCaja == DESTINO)
-                tablero[by][bx] = CAJA_EN_DESTINO;
+        if (targetBox == EMPTY || targetBox == TARGET) {
+            // Move box
+            if (targetBox == TARGET)
+                board[by][bx] = BOX_ON_TARGET;
             else
-                tablero[by][bx] = CAJA;
+                board[by][bx] = BOX;
 
-            // Mover jugador
-            if (tablero[y][x] == PLAYER_EN_DESTINO)
-                tablero[y][x] = DESTINO;
+            // Move player
+            if (board[y][x] == PLAYER_ON_TARGET)
+                board[y][x] = TARGET;
             else
-                tablero[y][x] = VACIO;
+                board[y][x] = EMPTY;
 
-            if (objetivo == CAJA_EN_DESTINO)
-                tablero[ny][nx] = PLAYER_EN_DESTINO;
+            if (target == BOX_ON_TARGET)
+                board[ny][nx] = PLAYER_ON_TARGET;
             else
-                tablero[ny][nx] = PLAYER;
+                board[ny][nx] = PLAYER;
 
-            jugadorX = nx;
-            jugadorY = ny;
+            playerX = nx;
+            playerY = ny;
         }
     }
 }
 
-bool finJuego(const vector<string>& tablero) {
-    for (const auto& fila : tablero) {
-        for (char c : fila) {
-            if (c == CAJA) return false;
+bool gameFinished(const vector<string>& board) {
+    for (const auto& row : board) {
+        for (char c : row) {
+            if (c == BOX) return false; // Some boxes are not on targets yet
         }
     }
     return true;
