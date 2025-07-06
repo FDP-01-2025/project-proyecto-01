@@ -63,8 +63,8 @@ vector<vector<string>> levels = {
         "| @      O       |",
         "|                |",
         "|                |",
-        "|            O   |",
-        "|  .             |",
+        "|---         O   |",
+        "|  .  |          |",
         "-----------------"
     },
     {
@@ -222,7 +222,7 @@ void move(int dx, int dy, vector<string>& board, int& playerX, int& playerY) {
 bool gameFinished(const vector<string>& board) {
     for (const auto& row : board) {
         for (char c : row) {
-            if (c == BOX) return false; // Some boxes are not on targets yet
+            if (c == BOX) return false; 
         }
     }
     return true;
