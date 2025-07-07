@@ -27,7 +27,7 @@ Estructuras condicionales (`if`, `else`, `switch`)
 Ciclos (`for`, `while`, `do-while`)
 * `for` en loadLevel() para recorrer toda la matriz y buscar la posición del jugador.
 * `while` (true) en el bucle principal del juego para mantener la partida activa hasta que se resuelva o el jugador salga.
-* `do-while` en el menú principal para repetir la selección de niveles y salir cuando se desee.
+* `do-while` en el menú principal para repetir la selección de niveles y salir cuando se desee. 
 
 Funciones
 Separación en funciones específicas:
